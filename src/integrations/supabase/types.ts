@@ -59,6 +59,50 @@ export type Database = {
         }
         Relationships: []
       }
+      media_assets: {
+        Row: {
+          company_id: string
+          created_at: string
+          id: string
+          metadata: Json | null
+          platform_preset: string | null
+          prompt: string | null
+          style: string | null
+          type: string
+          url: string
+        }
+        Insert: {
+          company_id: string
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          platform_preset?: string | null
+          prompt?: string | null
+          style?: string | null
+          type?: string
+          url: string
+        }
+        Update: {
+          company_id?: string
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          platform_preset?: string | null
+          prompt?: string | null
+          style?: string | null
+          type?: string
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "media_assets_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           agency_name: string | null
