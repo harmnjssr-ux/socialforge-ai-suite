@@ -9,7 +9,7 @@ import AppLayout from "@/layouts/AppLayout";
 import LoginPage from "@/pages/LoginPage";
 import SignupPage from "@/pages/SignupPage";
 import Index from "@/pages/Index";
-import SocialPage from "@/pages/SocialPage";
+import SocialMediaPage from "@/pages/SocialMediaPage";
 import AIStudioPage from "@/pages/AIStudioPage";
 import MediaPage from "@/pages/MediaPage";
 import SchedulerPage from "@/pages/SchedulerPage";
