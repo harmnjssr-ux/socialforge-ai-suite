@@ -125,6 +125,10 @@ const SocialMediaPage = () => {
         initialPlatform={composerPlatform}
         initialFile={composerFile}
       />
+      <MockupViewerModal
+        open={mockupViewerOpen}
+        onOpenChange={setMockupViewerOpen}
+      />
     </div>
   );
 };
