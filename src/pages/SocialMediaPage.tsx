@@ -4,11 +4,12 @@ import { useCompany } from "@/contexts/CompanyContext";
 import { PLATFORMS } from "@/lib/platforms";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { Link2 } from "lucide-react";
+import { Link2, Maximize2 } from "lucide-react";
 import PlatformCard from "@/components/social/PlatformCard";
 import ConnectPlatformModal from "@/components/social/ConnectPlatformModal";
 import PostComposerModal from "@/components/social/PostComposerModal";
 import ContentPreview from "@/components/social/ContentPreview";
+import MockupViewerModal from "@/components/mockups/MockupViewerModal";
 import type { PlatformInfo } from "@/lib/platforms";
 
 interface Connection {
