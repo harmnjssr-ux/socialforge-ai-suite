@@ -14,7 +14,128 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      companies: {
+        Row: {
+          bio: string | null
+          brand_font: string | null
+          brand_primary_color: string | null
+          brand_secondary_color: string | null
+          created_at: string
+          id: string
+          industry: string | null
+          logo_url: string | null
+          name: string
+          updated_at: string
+          user_id: string
+          website: string | null
+        }
+        Insert: {
+          bio?: string | null
+          brand_font?: string | null
+          brand_primary_color?: string | null
+          brand_secondary_color?: string | null
+          created_at?: string
+          id?: string
+          industry?: string | null
+          logo_url?: string | null
+          name: string
+          updated_at?: string
+          user_id: string
+          website?: string | null
+        }
+        Update: {
+          bio?: string | null
+          brand_font?: string | null
+          brand_primary_color?: string | null
+          brand_secondary_color?: string | null
+          created_at?: string
+          id?: string
+          industry?: string | null
+          logo_url?: string | null
+          name?: string
+          updated_at?: string
+          user_id?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          agency_name: string | null
+          avatar_url: string | null
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          agency_name?: string | null
+          avatar_url?: string | null
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          agency_name?: string | null
+          avatar_url?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      social_connections: {
+        Row: {
+          access_token: string | null
+          company_id: string
+          connected_at: string
+          id: string
+          is_active: boolean
+          platform: Database["public"]["Enums"]["social_platform"]
+          profile_url: string | null
+          refresh_token: string | null
+          username: string | null
+        }
+        Insert: {
+          access_token?: string | null
+          company_id: string
+          connected_at?: string
+          id?: string
+          is_active?: boolean
+          platform: Database["public"]["Enums"]["social_platform"]
+          profile_url?: string | null
+          refresh_token?: string | null
+          username?: string | null
+        }
+        Update: {
+          access_token?: string | null
+          company_id?: string
+          connected_at?: string
+          id?: string
+          is_active?: boolean
+          platform?: Database["public"]["Enums"]["social_platform"]
+          profile_url?: string | null
+          refresh_token?: string | null
+          username?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "social_connections_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +144,14 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      social_platform:
+        | "facebook"
+        | "instagram"
+        | "twitter"
+        | "linkedin"
+        | "tiktok"
+        | "youtube"
+        | "pinterest"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +278,16 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      social_platform: [
+        "facebook",
+        "instagram",
+        "twitter",
+        "linkedin",
+        "tiktok",
+        "youtube",
+        "pinterest",
+      ],
+    },
   },
 } as const
