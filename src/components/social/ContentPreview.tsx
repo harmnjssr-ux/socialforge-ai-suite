@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from "react";
-import { Upload, X, ChevronDown, ChevronUp, Heart, MessageCircle, Send, ThumbsUp, Share2, MoreHorizontal, Music2 } from "lucide-react";
+import { Upload, X, ChevronDown, ChevronUp, Heart, MessageCircle, Send, ThumbsUp, Share2, Music2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface ContentPreviewProps {
