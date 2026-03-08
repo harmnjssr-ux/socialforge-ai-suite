@@ -5,9 +5,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Calendar, Clock, Hash, Heart, MessageCircle, Send, ThumbsUp, Share2, Music2, Image as ImageIcon, Video } from "lucide-react";
-import { PLATFORMS, type PlatformInfo } from "@/lib/platforms";
+import { Clock, Hash, Heart, MessageCircle, Send, MoreHorizontal, Image as ImageIcon, Video } from "lucide-react";
+import { PLATFORMS } from "@/lib/platforms";
 
 interface PostComposerModalProps {
   open: boolean;
