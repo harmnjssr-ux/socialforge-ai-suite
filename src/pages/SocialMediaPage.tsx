@@ -29,6 +29,7 @@ const SocialMediaPage = () => {
   const [composerOpen, setComposerOpen] = useState(false);
   const [composerPlatform, setComposerPlatform] = useState<string | undefined>();
   const [composerFile, setComposerFile] = useState<File | null>(null);
+  const [mockupViewerOpen, setMockupViewerOpen] = useState(false);
 
   const fetchConnections = useCallback(async () => {
     if (!selectedCompany) return;
