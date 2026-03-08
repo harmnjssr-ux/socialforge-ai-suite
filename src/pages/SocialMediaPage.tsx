@@ -83,6 +83,9 @@ const SocialMediaPage = () => {
             <span className="text-success font-medium">• {connectedCount} Connected</span>
             <span>• {notConnectedCount} Not Connected</span>
           </div>
+          <Button variant="outline" size="sm" onClick={() => setMockupViewerOpen(true)}>
+            <Maximize2 className="mr-1.5 h-4 w-4" /> Preview Mockups
+          </Button>
           <Button variant="outline" size="sm">
             <Link2 className="mr-1.5 h-4 w-4" /> Connect All
           </Button>
