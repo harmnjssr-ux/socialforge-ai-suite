@@ -136,6 +136,53 @@ export type Database = {
         }
         Relationships: []
       }
+      scheduled_posts: {
+        Row: {
+          caption: string | null
+          company_id: string
+          content_type: string
+          created_at: string
+          hashtags: string | null
+          id: string
+          media_url: string | null
+          platform: string
+          scheduled_at: string
+          status: string
+        }
+        Insert: {
+          caption?: string | null
+          company_id: string
+          content_type?: string
+          created_at?: string
+          hashtags?: string | null
+          id?: string
+          media_url?: string | null
+          platform: string
+          scheduled_at: string
+          status?: string
+        }
+        Update: {
+          caption?: string | null
+          company_id?: string
+          content_type?: string
+          created_at?: string
+          hashtags?: string | null
+          id?: string
+          media_url?: string | null
+          platform?: string
+          scheduled_at?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "scheduled_posts_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       social_connections: {
         Row: {
           access_token: string | null
