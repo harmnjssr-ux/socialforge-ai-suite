@@ -9,7 +9,7 @@ import AppLayout from "@/layouts/AppLayout";
 import LoginPage from "@/pages/LoginPage";
 import SignupPage from "@/pages/SignupPage";
 import Index from "@/pages/Index";
-import SocialPage from "@/pages/SocialPage";
+import SocialMediaPage from "@/pages/SocialMediaPage";
 import AIStudioPage from "@/pages/AIStudioPage";
 import MediaPage from "@/pages/MediaPage";
 import SchedulerPage from "@/pages/SchedulerPage";
@@ -45,7 +45,7 @@ const App = () => (
             <Route path="/signup" element={<PublicRoute><SignupPage /></PublicRoute>} />
             <Route path="/" element={<ProtectedRoute><CompanyProvider><AppLayout /></CompanyProvider></ProtectedRoute>}>
               <Route index element={<Index />} />
-              <Route path="social" element={<SocialPage />} />
+              <Route path="social" element={<SocialMediaPage />} />
               <Route path="ai-studio" element={<AIStudioPage />} />
               <Route path="media" element={<MediaPage />} />
               <Route path="scheduler" element={<SchedulerPage />} />

@@ -152,6 +152,7 @@ export type Database = {
         | "tiktok"
         | "youtube"
         | "pinterest"
+        | "snapchat"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -287,6 +288,7 @@ export const Constants = {
         "tiktok",
         "youtube",
         "pinterest",
+        "snapchat",
       ],
     },
   },
