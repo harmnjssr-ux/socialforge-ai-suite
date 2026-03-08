@@ -45,7 +45,7 @@ const App = () => (
             <Route path="/signup" element={<PublicRoute><SignupPage /></PublicRoute>} />
             <Route path="/" element={<ProtectedRoute><CompanyProvider><AppLayout /></CompanyProvider></ProtectedRoute>}>
               <Route index element={<Index />} />
-              <Route path="social" elemenMediat={<St={<SocialMedia>
+              <Route path="social" element={<SocialMediaPage />} />
               <Route path="ai-studio" element={<AIStudioPage />} />
               <Route path="media" element={<MediaPage />} />
               <Route path="scheduler" element={<SchedulerPage />} />
