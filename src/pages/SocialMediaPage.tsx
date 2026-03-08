@@ -4,11 +4,12 @@ import { useCompany } from "@/contexts/CompanyContext";
 import { PLATFORMS } from "@/lib/platforms";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { Link2 } from "lucide-react";
+import { Link2, Maximize2 } from "lucide-react";
 import PlatformCard from "@/components/social/PlatformCard";
 import ConnectPlatformModal from "@/components/social/ConnectPlatformModal";
 import PostComposerModal from "@/components/social/PostComposerModal";
 import ContentPreview from "@/components/social/ContentPreview";
+import MockupViewerModal from "@/components/mockups/MockupViewerModal";
 import type { PlatformInfo } from "@/lib/platforms";
 
 interface Connection {
@@ -28,6 +29,7 @@ const SocialMediaPage = () => {
   const [composerOpen, setComposerOpen] = useState(false);
   const [composerPlatform, setComposerPlatform] = useState<string | undefined>();
   const [composerFile, setComposerFile] = useState<File | null>(null);
+  const [mockupViewerOpen, setMockupViewerOpen] = useState(false);
 
   const fetchConnections = useCallback(async () => {
     if (!selectedCompany) return;
@@ -81,6 +83,9 @@ const SocialMediaPage = () => {
             <span className="text-success font-medium">• {connectedCount} Connected</span>
             <span>• {notConnectedCount} Not Connected</span>
           </div>
+          <Button variant="outline" size="sm" onClick={() => setMockupViewerOpen(true)}>
+            <Maximize2 className="mr-1.5 h-4 w-4" /> Preview Mockups
+          </Button>
           <Button variant="outline" size="sm">
             <Link2 className="mr-1.5 h-4 w-4" /> Connect All
           </Button>
@@ -119,6 +124,10 @@ const SocialMediaPage = () => {
         onOpenChange={setComposerOpen}
         initialPlatform={composerPlatform}
         initialFile={composerFile}
+      />
+      <MockupViewerModal
+        open={mockupViewerOpen}
+        onOpenChange={setMockupViewerOpen}
       />
     </div>
   );
