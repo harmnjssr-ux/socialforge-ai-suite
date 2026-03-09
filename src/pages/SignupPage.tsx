@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { Zap } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -36,32 +36,35 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="w-full max-w-md animate-fade-in">
+    <div className="app-bg flex min-h-screen items-center justify-center bg-background">
+      <div className="grid-overlay" />
+      <div className="w-full max-w-md animate-fade-in relative z-10">
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary">
-            <Zap className="h-6 w-6 text-primary-foreground" />
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl gradient-primary glow-purple">
+            <Sparkles className="h-6 w-6 text-primary-foreground" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground">SocialForge AI</h1>
+          <h1 className="text-2xl font-display font-bold text-foreground">
+            SocialForge <span className="gradient-text">AI</span>
+          </h1>
           <p className="mt-1 text-sm text-muted-foreground">Create your agency account</p>
         </div>
 
-        <div className="rounded-lg border bg-card p-8 card-shadow">
+        <div className="card-glass p-8">
           <form onSubmit={handleSignup} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="fullName">Full Name</Label>
+              <Label htmlFor="fullName" className="text-muted-foreground">Full Name</Label>
               <Input id="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} required placeholder="John Doe" />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="agencyName">Agency Name</Label>
+              <Label htmlFor="agencyName" className="text-muted-foreground">Agency Name</Label>
               <Input id="agencyName" value={agencyName} onChange={(e) => setAgencyName(e.target.value)} placeholder="Acme Agency" />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="text-muted-foreground">Email</Label>
               <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="you@agency.com" />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password" className="text-muted-foreground">Password</Label>
               <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} placeholder="••••••••" />
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
@@ -70,9 +73,7 @@ const SignupPage = () => {
           </form>
           <p className="mt-4 text-center text-sm text-muted-foreground">
             Already have an account?{" "}
-            <Link to="/login" className="font-medium text-primary hover:underline">
-              Sign in
-            </Link>
+            <Link to="/login" className="font-medium text-primary hover:underline">Sign in</Link>
           </p>
         </div>
       </div>

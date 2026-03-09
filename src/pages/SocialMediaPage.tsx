@@ -34,30 +34,20 @@ const SocialMediaPage = () => {
   const fetchConnections = useCallback(async () => {
     if (!selectedCompany) return;
     setLoading(true);
-    const { data } = await supabase
-      .from("social_connections")
-      .select("*")
-      .eq("company_id", selectedCompany.id);
+    const { data } = await supabase.from("social_connections").select("*").eq("company_id", selectedCompany.id);
     setConnections((data as Connection[]) || []);
     setLoading(false);
   }, [selectedCompany]);
 
-  useEffect(() => {
-    fetchConnections();
-  }, [fetchConnections]);
+  useEffect(() => { fetchConnections(); }, [fetchConnections]);
 
   const handleDisconnect = async (connectionId: string) => {
     const { error } = await supabase.from("social_connections").delete().eq("id", connectionId);
     if (error) toast.error("Failed to disconnect");
-    else {
-      toast.success("Disconnected");
-      fetchConnections();
-    }
+    else { toast.success("Disconnected"); fetchConnections(); }
   };
 
-  const getConnection = (platformKey: string) =>
-    connections.find((c) => c.platform === platformKey && c.is_active);
-
+  const getConnection = (platformKey: string) => connections.find((c) => c.platform === platformKey && c.is_active);
   const connectedCount = PLATFORMS.filter((p) => getConnection(p.dbKey)).length;
   const notConnectedCount = PLATFORMS.length - connectedCount;
 
@@ -72,23 +62,21 @@ const SocialMediaPage = () => {
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Social Media</h1>
-          {selectedCompany && (
-            <p className="text-sm text-muted-foreground">{selectedCompany.name}</p>
-          )}
+          <h1 className="text-[28px] font-display font-bold text-foreground">Social Media</h1>
+          {selectedCompany && <p className="text-sm text-muted-foreground">{selectedCompany.name}</p>}
         </div>
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <span>{PLATFORMS.length} Platforms Available</span>
-            <span className="text-success font-medium">• {connectedCount} Connected</span>
-            <span>• {notConnectedCount} Not Connected</span>
+          <div className="flex items-center gap-2">
+            {[
+              { label: `${PLATFORMS.length} Platforms`, cls: "text-muted-foreground" },
+              { label: `${connectedCount} Connected`, cls: "text-success" },
+              { label: `${notConnectedCount} Not Connected`, cls: "text-muted-foreground" },
+            ].map((s) => (
+              <span key={s.label} className={`card-glass px-3 py-1.5 text-xs font-medium ${s.cls}`}>{s.label}</span>
+            ))}
           </div>
-          <Button variant="outline" size="sm" onClick={() => setMockupViewerOpen(true)}>
-            <Maximize2 className="mr-1.5 h-4 w-4" /> Preview Mockups
-          </Button>
-          <Button variant="outline" size="sm">
-            <Link2 className="mr-1.5 h-4 w-4" /> Connect All
-          </Button>
+          <Button variant="outline" size="sm" onClick={() => setMockupViewerOpen(true)}><Maximize2 className="mr-1.5 h-4 w-4" /> Preview Mockups</Button>
+          <Button variant="outline" size="sm"><Link2 className="mr-1.5 h-4 w-4" /> Connect All</Button>
         </div>
       </div>
 
@@ -113,22 +101,9 @@ const SocialMediaPage = () => {
       <ContentPreview onUseContent={(file) => openComposer(undefined, file)} />
 
       {/* Modals */}
-      <ConnectPlatformModal
-        open={!!connectModal}
-        onOpenChange={(open) => !open && setConnectModal(null)}
-        platform={connectModal}
-        onConnected={fetchConnections}
-      />
-      <PostComposerModal
-        open={composerOpen}
-        onOpenChange={setComposerOpen}
-        initialPlatform={composerPlatform}
-        initialFile={composerFile}
-      />
-      <MockupViewerModal
-        open={mockupViewerOpen}
-        onOpenChange={setMockupViewerOpen}
-      />
+      <ConnectPlatformModal open={!!connectModal} onOpenChange={(open) => !open && setConnectModal(null)} platform={connectModal} onConnected={fetchConnections} />
+      <PostComposerModal open={composerOpen} onOpenChange={setComposerOpen} initialPlatform={composerPlatform} initialFile={composerFile} />
+      <MockupViewerModal open={mockupViewerOpen} onOpenChange={setMockupViewerOpen} />
     </div>
   );
 };
