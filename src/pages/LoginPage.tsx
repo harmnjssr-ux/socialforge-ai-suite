@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { Zap } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -26,39 +26,28 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="w-full max-w-md animate-fade-in">
+    <div className="app-bg flex min-h-screen items-center justify-center bg-background">
+      <div className="grid-overlay" />
+      <div className="w-full max-w-md animate-fade-in relative z-10">
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary">
-            <Zap className="h-6 w-6 text-primary-foreground" />
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl gradient-primary glow-purple">
+            <Sparkles className="h-6 w-6 text-primary-foreground" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground">SocialForge AI</h1>
+          <h1 className="text-2xl font-display font-bold text-foreground">
+            SocialForge <span className="gradient-text">AI</span>
+          </h1>
           <p className="mt-1 text-sm text-muted-foreground">Sign in to your account</p>
         </div>
 
-        <div className="rounded-lg border bg-card p-8 card-shadow">
+        <div className="card-glass p-8">
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="you@agency.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
+              <Label htmlFor="email" className="text-muted-foreground">Email</Label>
+              <Input id="email" type="email" placeholder="you@agency.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+              <Label htmlFor="password" className="text-muted-foreground">Password</Label>
+              <Input id="password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
               {loading ? "Signing in…" : "Sign In"}
@@ -66,9 +55,7 @@ const LoginPage = () => {
           </form>
           <p className="mt-4 text-center text-sm text-muted-foreground">
             Don't have an account?{" "}
-            <Link to="/signup" className="font-medium text-primary hover:underline">
-              Sign up
-            </Link>
+            <Link to="/signup" className="font-medium text-primary hover:underline">Sign up</Link>
           </p>
         </div>
       </div>
