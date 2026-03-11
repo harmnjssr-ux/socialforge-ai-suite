@@ -12,13 +12,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const navItems = [
-  { title: "Dashboard", path: "/", icon: Home },
-  { title: "Social Media", path: "/social", icon: Grid3X3 },
-  { title: "AI Studio", path: "/ai-studio", icon: Sparkles },
-  { title: "Media Library", path: "/media", icon: Image },
-  { title: "Scheduler", path: "/scheduler", icon: Calendar },
-  { title: "Analytics", path: "/analytics", icon: BarChart3 },
-  { title: "Settings", path: "/settings", icon: Settings },
+  { title: "Dashboard", path: "/dashboard", icon: Home },
+  { title: "Social Media", path: "/dashboard/social", icon: Grid3X3 },
+  { title: "AI Studio", path: "/dashboard/ai-studio", icon: Sparkles },
+  { title: "Media Library", path: "/dashboard/media", icon: Image },
+  { title: "Scheduler", path: "/dashboard/scheduler", icon: Calendar },
+  { title: "Analytics", path: "/dashboard/analytics", icon: BarChart3 },
+  { title: "Settings", path: "/dashboard/settings", icon: Settings },
 ];
 
 interface AppSidebarProps {
@@ -34,12 +34,15 @@ const AppSidebar = ({ onAddCompany }: AppSidebarProps) => {
     name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2);
 
   return (
-    <aside className="flex h-screen w-60 flex-col border-r border-sidebar-border bg-[hsl(var(--sidebar-background))]" style={{ boxShadow: '1px 0 20px hsl(243 95% 69% / 0.08)' }}>
+    <aside
+      className="flex h-screen w-60 flex-col border-r border-sidebar-border bg-[hsl(var(--sidebar-background))]"
+      style={{ boxShadow: "1px 0 20px hsl(25 96% 61% / 0.06)" }}
+    >
       {/* Logo */}
       <div className="flex items-center gap-2 px-5 pt-6 pb-4">
-        <Sparkles className="h-5 w-5 text-primary glow-pulse" style={{ animation: 'glow-pulse 3s infinite' }} />
+        <Sparkles className="h-5 w-5 text-primary" style={{ animation: "glow-pulse 3s infinite" }} />
         <span className="font-display text-lg font-bold tracking-wide text-foreground">
-          Social<span className="text-foreground">Forge</span>{" "}
+          SocialForge{" "}
           <span className="gradient-text">AI</span>
         </span>
       </div>
@@ -47,7 +50,7 @@ const AppSidebar = ({ onAddCompany }: AppSidebarProps) => {
       {/* Company Selector */}
       <div className="px-3 pb-3">
         <DropdownMenu>
-          <DropdownMenuTrigger className="flex w-full items-center gap-3 rounded-full px-3 py-2 text-left text-sm hover:bg-[hsl(0_0%_100%/0.06)] transition-all duration-150" style={{ background: 'hsl(0 0% 100% / 0.06)' }}>
+          <DropdownMenuTrigger className="flex w-full items-center gap-3 rounded-full px-3 py-2 text-left text-sm hover:bg-[hsl(0_0%_100%/0.06)] transition-all duration-150" style={{ background: "hsl(0 0% 100% / 0.06)" }}>
             {selectedCompany?.logo_url ? (
               <img src={selectedCompany.logo_url} className="h-7 w-7 rounded-full object-cover" alt="" />
             ) : (
@@ -77,19 +80,20 @@ const AppSidebar = ({ onAddCompany }: AppSidebarProps) => {
       {/* Navigation */}
       <nav className="flex-1 space-y-0.5 overflow-y-auto px-3 pt-2">
         {navItems.map((item) => {
-          const isActive = location.pathname === item.path;
+          const isActive = location.pathname === item.path || (item.path === "/dashboard" && location.pathname === "/dashboard");
           return (
             <NavLink
               key={item.path}
               to={item.path}
+              end={item.path === "/dashboard"}
               className={`group flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium tracking-[0.03em] transition-all duration-150 ${
                 isActive
-                  ? "bg-[hsl(243_95%_69%/0.15)] text-foreground border-l-2 border-primary"
+                  ? "bg-primary/15 text-foreground border-l-2 border-primary"
                   : "text-muted-foreground hover:bg-[hsl(0_0%_100%/0.05)] hover:text-foreground"
               }`}
-              style={isActive ? { boxShadow: '0 0 12px hsl(243 95% 69% / 0.15)' } : {}}
+              style={isActive ? { boxShadow: "0 0 12px hsl(25 96% 61% / 0.12)" } : {}}
             >
-              <item.icon className={`h-[18px] w-[18px] shrink-0 transition-transform duration-150 group-hover:scale-110 ${isActive ? 'text-primary' : ''}`} />
+              <item.icon className={`h-[18px] w-[18px] shrink-0 transition-transform duration-150 group-hover:scale-110 ${isActive ? "text-primary" : ""}`} />
               <span className="font-display">{item.title}</span>
             </NavLink>
           );

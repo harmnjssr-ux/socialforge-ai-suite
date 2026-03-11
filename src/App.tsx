@@ -7,6 +7,7 @@ import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { CompanyProvider } from "@/contexts/CompanyContext";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import AppLayout from "@/layouts/AppLayout";
+import HomePage from "@/pages/HomePage";
 import LoginPage from "@/pages/LoginPage";
 import SignupPage from "@/pages/SignupPage";
 import Index from "@/pages/Index";
@@ -30,7 +31,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 const PublicRoute = ({ children }: { children: React.ReactNode }) => {
   const { session, loading } = useAuth();
   if (loading) return null;
-  if (session) return <Navigate to="/" replace />;
+  if (session) return <Navigate to="/dashboard" replace />;
   return <>{children}</>;
 };
 
@@ -43,9 +44,10 @@ const App = () => (
         <BrowserRouter>
           <AuthProvider>
             <Routes>
+              <Route path="/" element={<PublicRoute><HomePage /></PublicRoute>} />
               <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
               <Route path="/signup" element={<PublicRoute><SignupPage /></PublicRoute>} />
-              <Route path="/" element={<ProtectedRoute><CompanyProvider><AppLayout /></CompanyProvider></ProtectedRoute>}>
+              <Route path="/dashboard" element={<ProtectedRoute><CompanyProvider><AppLayout /></CompanyProvider></ProtectedRoute>}>
                 <Route index element={<Index />} />
                 <Route path="social" element={<SocialMediaPage />} />
                 <Route path="ai-studio" element={<AIStudioPage />} />

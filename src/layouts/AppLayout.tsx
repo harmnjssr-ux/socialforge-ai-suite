@@ -3,19 +3,22 @@ import { Outlet, useLocation } from "react-router-dom";
 import AppSidebar from "@/components/AppSidebar";
 import AddCompanyModal from "@/components/AddCompanyModal";
 import OnboardingTour from "@/components/OnboardingTour";
+import ParticleCanvas from "@/components/ParticleCanvas";
+import GrainOverlay from "@/components/GrainOverlay";
+import CustomCursor from "@/components/CustomCursor";
 import { useCompany } from "@/contexts/CompanyContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const PAGE_TITLES: Record<string, string> = {
-  "/": "Dashboard",
-  "/social": "Social Media",
-  "/ai-studio": "AI Studio",
-  "/media": "Media Library",
-  "/scheduler": "Scheduler",
-  "/analytics": "Analytics",
-  "/settings": "Settings",
+  "/dashboard": "Dashboard",
+  "/dashboard/social": "Social Media",
+  "/dashboard/ai-studio": "AI Studio",
+  "/dashboard/media": "Media Library",
+  "/dashboard/scheduler": "Scheduler",
+  "/dashboard/analytics": "Analytics",
+  "/dashboard/settings": "Settings",
 };
 
 const AppLayout = () => {
@@ -54,8 +57,10 @@ const AppLayout = () => {
   };
 
   return (
-    <div className="app-bg flex h-screen w-full overflow-hidden">
-      <div className="grid-overlay" />
+    <div className="app-bg flex h-screen w-full overflow-hidden" style={{ cursor: "none" }}>
+      <ParticleCanvas />
+      <GrainOverlay />
+      <CustomCursor />
 
       {/* Desktop sidebar */}
       <div className="hidden lg:block relative z-10">
@@ -65,7 +70,7 @@ const AppLayout = () => {
       {/* Mobile sidebar overlay */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-[hsl(var(--background))/0.8] backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
+          <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
           <div className="relative z-10 h-full w-60 animate-fade-in">
             <AppSidebar onAddCompany={() => { setShowAddCompany(true); setMobileMenuOpen(false); }} />
           </div>
@@ -74,7 +79,7 @@ const AppLayout = () => {
 
       <div className="flex flex-1 flex-col overflow-hidden relative z-10">
         {/* Mobile header */}
-        <header className="flex items-center gap-3 border-b border-border bg-[hsl(var(--background))/0.8] backdrop-blur-md px-4 py-3 lg:hidden">
+        <header className="flex items-center gap-3 border-b border-border bg-background/80 backdrop-blur-md px-4 py-3 lg:hidden">
           <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setMobileMenuOpen(true)}>
             <Menu className="h-5 w-5" />
           </Button>
