@@ -1,10 +1,11 @@
 import { Link, Globe, FileText, Calendar, Plus, Image, Video, Building2 } from "lucide-react";
 import { useCompany } from "@/contexts/CompanyContext";
+import { useNavigate } from "react-router-dom";
 
-const statColors = ["hsl(243 95% 69%)", "hsl(191 100% 50%)", "hsl(340 85% 60%)", "hsl(160 100% 50%)"];
+const statColors = ["hsl(25 96% 61%)", "hsl(271 95% 75%)", "hsl(340 85% 60%)", "hsl(160 90% 45%)"];
 
 const StatCard = ({ label, value, icon: Icon, colorIndex }: { label: string; value: string; icon: any; colorIndex: number }) => (
-  <div className="card-glass card-glass-hover shimmer-card relative overflow-hidden p-5 transition-all duration-200 hover:-translate-y-[3px]">
+  <div className="card-glass card-glass-hover shimmer-card relative overflow-hidden p-5 transition-all duration-300">
     <div className="flex items-center justify-between relative z-10">
       <div>
         <p className="text-sm text-muted-foreground">{label}</p>
@@ -21,7 +22,7 @@ const StatCard = ({ label, value, icon: Icon, colorIndex }: { label: string; val
 const QuickAction = ({ label, icon: Icon, onClick }: { label: string; icon: any; onClick?: () => void }) => (
   <button
     onClick={onClick}
-    className="card-glass card-glass-hover flex flex-col items-center gap-3 p-5 text-sm font-display font-medium text-foreground transition-all duration-200 hover:-translate-y-[3px]"
+    className="card-glass card-glass-hover flex flex-col items-center gap-3 p-5 text-sm font-display font-medium text-foreground transition-all duration-300"
   >
     <div className="flex h-10 w-10 items-center justify-center rounded-xl gradient-primary">
       <Icon className="h-5 w-5 text-primary-foreground" />
@@ -30,7 +31,7 @@ const QuickAction = ({ label, icon: Icon, onClick }: { label: string; icon: any;
   </button>
 );
 
-const activityColors = ["hsl(243 95% 69%)", "hsl(191 100% 50%)", "hsl(160 100% 50%)", "hsl(243 95% 69%)", "hsl(340 85% 60%)"];
+const activityColors = ["hsl(25 96% 61%)", "hsl(271 95% 75%)", "hsl(160 90% 45%)", "hsl(25 96% 61%)", "hsl(340 85% 60%)"];
 
 const recentActivity = [
   { text: "Created new Instagram post for campaign", time: "2 hours ago" },
@@ -52,6 +53,7 @@ interface DashboardHomeProps {
 
 const DashboardHome = ({ onAddCompany }: DashboardHomeProps) => {
   const { selectedCompany } = useCompany();
+  const navigate = useNavigate();
 
   return (
     <div className="animate-fade-in space-y-6">
@@ -61,7 +63,7 @@ const DashboardHome = ({ onAddCompany }: DashboardHomeProps) => {
         </h1>
         <p className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
           <span className="inline-block h-2 w-2 rounded-full bg-success pulse-dot" />
-          Live • Overview of your social media performance
+          System Active — All Systems Nominal
         </p>
       </div>
 
@@ -69,7 +71,7 @@ const DashboardHome = ({ onAddCompany }: DashboardHomeProps) => {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Platforms Connected" value="0" icon={Globe} colorIndex={0} />
         <StatCard label="Posts This Month" value="0" icon={FileText} colorIndex={1} />
-        <StatCard label="Content Generated" value="0" icon={FileText} colorIndex={2} />
+        <StatCard label="AI Assets Generated" value="0" icon={FileText} colorIndex={2} />
         <StatCard label="Scheduled Posts" value="0" icon={Calendar} colorIndex={3} />
       </div>
 
@@ -77,9 +79,9 @@ const DashboardHome = ({ onAddCompany }: DashboardHomeProps) => {
       <div>
         <h2 className="mb-3 text-lg font-display font-semibold text-foreground">Quick Actions</h2>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <QuickAction label="New Post" icon={Plus} />
-          <QuickAction label="Generate Image" icon={Image} />
-          <QuickAction label="Generate Video" icon={Video} />
+          <QuickAction label="Generate Image" icon={Image} onClick={() => navigate("/dashboard/ai-studio")} />
+          <QuickAction label="Generate Video" icon={Video} onClick={() => navigate("/dashboard/ai-studio")} />
+          <QuickAction label="Connect Platform" icon={Globe} onClick={() => navigate("/dashboard/social")} />
           <QuickAction label="Add Company" icon={Building2} onClick={onAddCompany} />
         </div>
       </div>

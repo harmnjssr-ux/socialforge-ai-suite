@@ -50,7 +50,7 @@ const PLATFORM_STATS = [
   { key: "twitter", followers: "4.8K", growth: -0.5, posts: 45, engagement: 1.9 },
 ];
 
-const tooltipStyle = { background: "hsl(232 55% 10%)", border: "1px solid hsl(0 0% 100% / 0.1)", borderRadius: 12, fontSize: 12, color: "#F0F0FF" };
+const tooltipStyle = { background: "hsl(260 40% 7%)", border: "1px solid hsl(0 0% 100% / 0.1)", borderRadius: 12, fontSize: 12, color: "#F5F0E8" };
 
 const AnalyticsPage = () => {
   const { selectedCompany } = useCompany();
@@ -88,14 +88,14 @@ const AnalyticsPage = () => {
         </div>
       </div>
 
-      <div className="card-glass flex items-center gap-3 p-3" style={{ borderColor: 'hsl(243 95% 69% / 0.2)' }}>
+      <div className="card-glass flex items-center gap-3 p-3" style={{ borderColor: "hsl(25 96% 61% / 0.2)" }}>
         <Info className="h-5 w-5 text-primary shrink-0" />
         <p className="text-sm text-muted-foreground">Connect your platforms to see live data. Currently showing demo analytics.</p>
       </div>
 
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
         {metrics.map((m) => (
-          <div key={m.label} className="card-glass shimmer-card p-4 transition-all duration-200 hover:-translate-y-[3px]">
+          <div key={m.label} className="card-glass shimmer-card p-4 transition-all duration-300 hover:-translate-y-1">
             <div className="flex items-center justify-between relative z-10">
               <m.icon className="h-4 w-4 text-muted-foreground" />
               <span className={`flex items-center text-xs font-medium ${m.up ? "text-success" : "text-destructive"}`}>
@@ -111,13 +111,13 @@ const AnalyticsPage = () => {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card><CardHeader className="pb-2"><CardTitle>Follower Growth</CardTitle></CardHeader><CardContent>
           <ResponsiveContainer width="100%" height={280}>
-            <LineChart data={followerData}><CartesianGrid strokeDasharray="3 3" stroke="hsl(0 0% 100% / 0.06)" /><XAxis dataKey="date" tick={{ fontSize: 10, fill: '#8888AA' }} stroke="transparent" /><YAxis tick={{ fontSize: 10, fill: '#8888AA' }} stroke="transparent" /><Tooltip contentStyle={tooltipStyle} /><Legend wrapperStyle={{ fontSize: 11 }} />{visiblePlatforms.map((key) => (<Line key={key} type="monotone" dataKey={key} stroke={PLATFORM_COLORS[key]} strokeWidth={2} dot={false} name={PLATFORMS.find((p) => p.dbKey === key)?.name || key} />))}</LineChart>
+            <LineChart data={followerData}><CartesianGrid strokeDasharray="3 3" stroke="hsl(0 0% 100% / 0.06)" /><XAxis dataKey="date" tick={{ fontSize: 10, fill: "hsl(37 20% 55%)" }} stroke="transparent" /><YAxis tick={{ fontSize: 10, fill: "hsl(37 20% 55%)" }} stroke="transparent" /><Tooltip contentStyle={tooltipStyle} /><Legend wrapperStyle={{ fontSize: 11 }} />{visiblePlatforms.map((key) => (<Line key={key} type="monotone" dataKey={key} stroke={PLATFORM_COLORS[key]} strokeWidth={2} dot={false} name={PLATFORMS.find((p) => p.dbKey === key)?.name || key} />))}</LineChart>
           </ResponsiveContainer>
         </CardContent></Card>
 
         <Card><CardHeader className="pb-2"><CardTitle>Posting Frequency</CardTitle></CardHeader><CardContent>
           <ResponsiveContainer width="100%" height={280}>
-            <BarChart data={postingData}><CartesianGrid strokeDasharray="3 3" stroke="hsl(0 0% 100% / 0.06)" /><XAxis dataKey="day" tick={{ fontSize: 10, fill: '#8888AA' }} stroke="transparent" /><YAxis tick={{ fontSize: 10, fill: '#8888AA' }} stroke="transparent" /><Tooltip contentStyle={tooltipStyle} /><Legend wrapperStyle={{ fontSize: 11 }} />{visiblePlatforms.map((key) => (<Bar key={key} dataKey={key} fill={PLATFORM_COLORS[key]} radius={[2, 2, 0, 0]} name={PLATFORMS.find((p) => p.dbKey === key)?.name || key} />))}</BarChart>
+            <BarChart data={postingData}><CartesianGrid strokeDasharray="3 3" stroke="hsl(0 0% 100% / 0.06)" /><XAxis dataKey="day" tick={{ fontSize: 10, fill: "hsl(37 20% 55%)" }} stroke="transparent" /><YAxis tick={{ fontSize: 10, fill: "hsl(37 20% 55%)" }} stroke="transparent" /><Tooltip contentStyle={tooltipStyle} /><Legend wrapperStyle={{ fontSize: 11 }} />{visiblePlatforms.map((key) => (<Bar key={key} dataKey={key} fill={PLATFORM_COLORS[key]} radius={[2, 2, 0, 0]} name={PLATFORMS.find((p) => p.dbKey === key)?.name || key} />))}</BarChart>
           </ResponsiveContainer>
         </CardContent></Card>
       </div>
@@ -125,7 +125,7 @@ const AnalyticsPage = () => {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card><CardHeader className="pb-2"><CardTitle>Engagement by Platform</CardTitle></CardHeader><CardContent>
           <ResponsiveContainer width="100%" height={280}>
-            <BarChart data={engagementData} layout="vertical"><CartesianGrid strokeDasharray="3 3" stroke="hsl(0 0% 100% / 0.06)" /><XAxis type="number" tick={{ fontSize: 10, fill: '#8888AA' }} stroke="transparent" unit="%" /><YAxis type="category" dataKey="platform" tick={{ fontSize: 11, fill: '#8888AA' }} width={80} stroke="transparent" /><Tooltip contentStyle={tooltipStyle} formatter={(v: number) => `${v}%`} /><Bar dataKey="rate" radius={[0, 4, 4, 0]}>{engagementData.map((entry, i) => <Cell key={i} fill={entry.color} />)}</Bar></BarChart>
+            <BarChart data={engagementData} layout="vertical"><CartesianGrid strokeDasharray="3 3" stroke="hsl(0 0% 100% / 0.06)" /><XAxis type="number" tick={{ fontSize: 10, fill: "hsl(37 20% 55%)" }} stroke="transparent" unit="%" /><YAxis type="category" dataKey="platform" tick={{ fontSize: 11, fill: "hsl(37 20% 55%)" }} width={80} stroke="transparent" /><Tooltip contentStyle={tooltipStyle} formatter={(v: number) => `${v}%`} /><Bar dataKey="rate" radius={[0, 4, 4, 0]}>{engagementData.map((entry, i) => <Cell key={i} fill={entry.color} />)}</Bar></BarChart>
           </ResponsiveContainer>
         </CardContent></Card>
 
@@ -135,10 +135,10 @@ const AnalyticsPage = () => {
             {heatmapData.map((row) => (
               <div key={row.day} className="flex items-center gap-1">
                 <span className="w-10 text-xs text-muted-foreground text-right pr-1">{row.day}</span>
-                {row.hours.map((cell, i) => (<div key={i} className="flex-1 aspect-square rounded-sm" style={{ backgroundColor: `hsl(243 95% 69% / ${0.1 + cell.value * 0.7})` }} title={`${row.day} ${cell.hour}:00 — ${(cell.value * 100).toFixed(0)}% engagement`} />))}
+                {row.hours.map((cell, i) => (<div key={i} className="flex-1 aspect-square rounded-sm" style={{ backgroundColor: `hsl(25 96% 61% / ${0.1 + cell.value * 0.7})` }} title={`${row.day} ${cell.hour}:00 — ${(cell.value * 100).toFixed(0)}% engagement`} />))}
               </div>
             ))}
-            <div className="flex items-center justify-end gap-2 pt-2"><span className="text-[10px] text-muted-foreground">Low</span><div className="flex gap-0.5">{[0.15, 0.3, 0.5, 0.7, 0.9].map((v, i) => (<div key={i} className="h-3 w-6 rounded-sm" style={{ backgroundColor: `hsl(243 95% 69% / ${v})` }} />))}</div><span className="text-[10px] text-muted-foreground">High</span></div>
+            <div className="flex items-center justify-end gap-2 pt-2"><span className="text-[10px] text-muted-foreground">Low</span><div className="flex gap-0.5">{[0.15, 0.3, 0.5, 0.7, 0.9].map((v, i) => (<div key={i} className="h-3 w-6 rounded-sm" style={{ backgroundColor: `hsl(25 96% 61% / ${v})` }} />))}</div><span className="text-[10px] text-muted-foreground">High</span></div>
           </div>
         </CardContent></Card>
       </div>

@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { User, Building2, Key, Users, Bell, CreditCard, Save, Trash2, Plus, Eye, EyeOff, Check, X, Mail, Shield, Crown, Edit } from "lucide-react";
+import { User, Building2, Key, Users, Bell, CreditCard, Save, Trash2, Plus, Eye, EyeOff, Crown, Edit } from "lucide-react";
 
 const SECTIONS = [
   { key: "profile", label: "Agency Profile", icon: User },
@@ -60,7 +60,7 @@ const SettingsPage = () => {
     if (error) toast.error("Failed to save profile"); else toast.success("Profile saved");
   };
 
-  const openEditCompany = (c: Company) => { setEditingCompany(c); setEditName(c.name); setEditIndustry(c.industry || ""); setEditWebsite(c.website || ""); setEditBio(c.bio || ""); setEditPrimary(c.brand_primary_color || "#6C63FF"); setEditSecondary(c.brand_secondary_color || "#00D4FF"); };
+  const openEditCompany = (c: Company) => { setEditingCompany(c); setEditName(c.name); setEditIndustry(c.industry || ""); setEditWebsite(c.website || ""); setEditBio(c.bio || ""); setEditPrimary(c.brand_primary_color || "#FB923C"); setEditSecondary(c.brand_secondary_color || "#C084FC"); };
 
   const handleSaveCompany = async () => {
     if (!editingCompany) return;
@@ -132,7 +132,7 @@ const SettingsPage = () => {
             <Card>
               <CardHeader><CardTitle>API Keys</CardTitle><CardDescription>Connect your AI service keys to unlock AI Studio features</CardDescription></CardHeader>
               <CardContent className="space-y-4">
-                <div className="card-glass p-3 text-sm text-muted-foreground" style={{ borderColor: 'hsl(243 95% 69% / 0.2)' }}><Key className="inline mr-2 h-4 w-4 text-primary" />Your API keys are stored securely and never shared.</div>
+                <div className="card-glass p-3 text-sm text-muted-foreground" style={{ borderColor: "hsl(25 96% 61% / 0.2)" }}><Key className="inline mr-2 h-4 w-4 text-primary" />Your API keys are stored securely and never shared.</div>
                 {[{ key: "replicate", label: "Replicate API Key", desc: "For image generation" }, { key: "runway", label: "Runway ML API Key", desc: "For video generation" }, { key: "elevenlabs", label: "ElevenLabs API Key", desc: "For voiceover & music" }, { key: "did", label: "D-ID API Key", desc: "For AI avatars" }].map((item) => (
                   <div key={item.key} className="space-y-1.5">
                     <label className="text-xs font-medium text-muted-foreground">{item.label} <span className="text-[10px]">— {item.desc}</span></label>
@@ -189,7 +189,7 @@ const SettingsPage = () => {
             <Card>
               <CardHeader><CardTitle>Billing</CardTitle><CardDescription>Manage your subscription and usage</CardDescription></CardHeader>
               <CardContent className="space-y-6">
-                <div className="card-glass p-5" style={{ borderColor: 'hsl(243 95% 69% / 0.3)' }}>
+                <div className="card-glass p-5" style={{ borderColor: "hsl(25 96% 61% / 0.3)" }}>
                   <div className="flex items-center justify-between">
                     <div><Badge className="mb-2 gradient-primary">Current Plan</Badge><h3 className="text-xl font-display font-bold text-foreground">Starter Plan</h3><p className="text-muted-foreground">$49/month · Renews April 8, 2026</p></div>
                     <Button>Upgrade Plan</Button>
