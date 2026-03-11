@@ -27,7 +27,7 @@ const OnboardingTour = ({ open, onOpenChange, onAddCompany }: OnboardingTourProp
           {STEPS.map((_, i) => (<div key={i} className={`h-1.5 rounded-full transition-all ${i === step ? "w-6 gradient-primary" : "w-1.5 bg-secondary"}`} />))}
         </div>
         <div className="flex flex-col items-center px-8 pb-8 pt-4 text-center">
-          <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl gradient-primary glow-purple">
+          <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl gradient-primary glow-orange">
             <current.icon className="h-8 w-8 text-primary-foreground" />
           </div>
           <h2 className="text-xl font-display font-bold text-foreground">{current.title}</h2>
