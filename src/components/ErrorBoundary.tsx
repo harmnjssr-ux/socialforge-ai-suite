@@ -14,7 +14,7 @@ class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         <div className="app-bg flex min-h-screen items-center justify-center p-6">
-          <div className="grid-overlay" />
+          <div className="absolute inset-0 pointer-events-none" />
           <div className="max-w-md text-center relative z-10">
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-destructive/15 border border-destructive/30">
               <AlertTriangle className="h-8 w-8 text-destructive" />

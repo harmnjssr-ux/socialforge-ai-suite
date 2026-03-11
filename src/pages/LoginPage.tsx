@@ -6,6 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Sparkles } from "lucide-react";
+import ParticleCanvas from "@/components/ParticleCanvas";
+import GrainOverlay from "@/components/GrainOverlay";
+import CustomCursor from "@/components/CustomCursor";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -21,16 +24,18 @@ const LoginPage = () => {
     if (error) {
       toast.error(error.message);
     } else {
-      navigate("/");
+      navigate("/dashboard");
     }
   };
 
   return (
-    <div className="app-bg flex min-h-screen items-center justify-center bg-background">
-      <div className="grid-overlay" />
+    <div className="app-bg flex min-h-screen items-center justify-center bg-background" style={{ cursor: "none" }}>
+      <ParticleCanvas />
+      <GrainOverlay />
+      <CustomCursor />
       <div className="w-full max-w-md animate-fade-in relative z-10">
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl gradient-primary glow-purple">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl gradient-primary glow-orange">
             <Sparkles className="h-6 w-6 text-primary-foreground" />
           </div>
           <h1 className="text-2xl font-display font-bold text-foreground">
